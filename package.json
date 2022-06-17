@@ -1,0 +1,19 @@
+{
+  "name": "union-interface-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.9.1",
+    "dayjs": "^1.11.3",
+    "express": "^4.18.1",
+    "geoip-lite": "^1.4.5",
+    "md5": "^2.3.0",
+    "vercel": "^25.1.0"
+  }
+}

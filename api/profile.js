@@ -38,9 +38,9 @@ async function handler(req, res) {
   const width = 1200;
   const height = 600;
 
-  // registerFont(path.resolve(__dirname, "../public/arial.ttf"), {
-  //   family: "arial",
-  // });
+  registerFont(path.resolve(__dirname, "../public/arial.ttf"), {
+    family: "arial",
+  });
 
   const details = await getProfileDetails(address);
 

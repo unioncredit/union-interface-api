@@ -1,12 +1,15 @@
 export async function fetchENS(address) {
+  console.log("Fetching ENS");
   const apiUrl = "https://api.ensideas.com/ens/resolve/";
 
   try {
     const resp = await fetch(apiUrl + address);
     const json = await resp.json();
+    console.log("Fetch response:", json);
 
     return json;
-  } catch (_) {
+  } catch (e) {
+    console.log("Fetch error", e);
     return {};
   }
 }

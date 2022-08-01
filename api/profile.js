@@ -28,7 +28,11 @@ function roundRect(ctx, x, y, width, height, radius) {
 
 async function handler(req, res) {
   const address = req.query.address;
+  const network = req.query.network;
+
   console.log("Address:", address);
+  console.log("Network:", network);
+
   const width = 1200;
   const height = 600;
 
@@ -36,7 +40,7 @@ async function handler(req, res) {
     family: "arial",
   });
 
-  const details = await getProfileDetails(address);
+  const details = await getProfileDetails(address, network);
   console.log("Profile details:", details);
 
   const canvas = createCanvas(width, height);

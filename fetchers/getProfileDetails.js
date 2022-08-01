@@ -18,7 +18,7 @@ async function getProfileDetails(address) {
   const ens = await fetchENS(address);
 
   return {
-    image: ens.image,
+    image: ens.avatar,
     address,
     name: ens.name || truncateAddress(address),
     isMember: false,

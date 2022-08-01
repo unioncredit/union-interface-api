@@ -28,6 +28,7 @@ function roundRect(ctx, x, y, width, height, radius) {
 
 async function handler(req, res) {
   const address = req.query.address;
+  console.log("Address:", address);
   const width = 1200;
   const height = 600;
 
@@ -36,6 +37,7 @@ async function handler(req, res) {
   });
 
   const details = await getProfileDetails(address);
+  console.log("Profile details:", details);
 
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");

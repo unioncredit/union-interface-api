@@ -1,16 +1,9 @@
 const stream = require("stream");
 const path = require("path");
-const dayjs = require("dayjs");
 const { registerFont, createCanvas, Image, loadImage } = require("canvas");
 
 const getProfileAvatar = require("../fetchers/getProfileAvatar");
 const getProfileDetails = require("../fetchers/getProfileDetails");
-
-export default function formatDateTime(ts) {
-  // because js has dumb timestamps
-  const jsts = Number(ts) * 1000;
-  return dayjs(jsts).format("HH:MM DD MMM");
-}
 
 function roundRect(ctx, x, y, width, height, radius) {
   radius = { tl: radius, tr: radius, br: radius, bl: radius };
@@ -146,8 +139,8 @@ async function handler(req, res) {
 
   context.font = "28px arial";
   let infoText, fillColor, textColor;
-  if (details.memberSince > 0) {
-    infoText = `Member since ${formatDateTime(details.memberSince)}`;
+  if (details.isMember > 0) {
+    infoText = "Union Member";
     textColor = "#3B82F6";
     fillColor = "#DBEAFE";
   } else {

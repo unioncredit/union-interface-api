@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export async function fetchENS(address) {
   console.log("Fetching ENS");
   const apiUrl = "https://api.ensideas.com/ens/resolve/";

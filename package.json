@@ -10,11 +10,14 @@
     "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/"
   },
   "dependencies": {
-    "canvas": "2.6.1",
+    "canvas": "2.11.2",
     "dayjs": "^1.11.3",
     "ethers": "^5.6.9",
     "geoip-lite": "^1.4.5",
     "md5": "^2.3.0",
     "node-fetch": "2"
+  },
+  "devDependencies": {
+    "vercel": "^32.6.1"
   }
 }

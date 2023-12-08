@@ -69,10 +69,6 @@ export class CanvasBuilder {
       this.context.stroke()
     }
 
-    if (clip) {
-      this.context.clip();
-    }
-
     this.context.closePath();
   }
 

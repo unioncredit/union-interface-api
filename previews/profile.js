@@ -47,6 +47,13 @@ export async function drawProfilePreview(req, res) {
   canvas.drawImage(avatar, AVATAR_X, AVATAR_Y, AVATAR_SIZE, AVATAR_SIZE);
   canvas.restore();
 
+  if (isMember) {
+    const tick = await loadImage(Images.Tick);
+    canvas.drawCircle(AVATAR_X - 8, AVATAR_Y - 8, AVATAR_SIZE + 16, null, "#3B82F6", 5);
+    canvas.drawCircle(AVATAR_X+AVATAR_SIZE-28, AVATAR_Y+AVATAR_SIZE-28, 32, "#3B82F6", "#3B82F6");
+    canvas.drawImage(tick, AVATAR_X+AVATAR_SIZE-23, AVATAR_Y+AVATAR_SIZE-20, 20, 15);
+  }
+
   // Primary label
   canvas.drawCenterText(name, PRIMARY_LABEL_Y, "#292524", PRIMARY_LABEL_SIZE, 500);
 
@@ -64,8 +71,6 @@ export async function drawProfilePreview(req, res) {
     } else {
       canvas.drawRoundRectText(MEMBER_BADGE_Y, "Member", "#3B82F6", BADGE_SIZE, "#DBEAFE", BADGE_RADIUS, BADGE_PADDING);
     }
-
-
   } else {
     canvas.drawRoundRectText(MEMBER_BADGE_Y, "Not a member", "#F59E0B", BADGE_SIZE, "#FEF3C7", BADGE_RADIUS, BADGE_PADDING);
   }

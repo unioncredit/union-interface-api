@@ -51,7 +51,7 @@ export async function drawProfilePreview(req, res) {
     const tick = await loadImage(Images.Tick);
     canvas.drawCircle(AVATAR_X - 8, AVATAR_Y - 8, AVATAR_SIZE + 16, null, "#3B82F6", 5);
     canvas.drawCircle(AVATAR_X+AVATAR_SIZE-28, AVATAR_Y+AVATAR_SIZE-28, 32, "#3B82F6", "#3B82F6");
-    canvas.drawImage(tick, AVATAR_X+AVATAR_SIZE-23, AVATAR_Y+AVATAR_SIZE-20, 20, 15);
+    canvas.drawImage(tick, AVATAR_X+AVATAR_SIZE-23, AVATAR_Y+AVATAR_SIZE-18, 20, 15);
   }
 
   // Primary label

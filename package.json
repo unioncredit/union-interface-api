@@ -10,8 +10,10 @@
     "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/"
   },
   "dependencies": {
+    "@unioncredit/data": "^1.0.19",
     "canvas": "2.11.2",
     "dayjs": "^1.11.3",
+    "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^5.6.9",
     "geoip-lite": "^1.4.5",
     "md5": "^2.3.0",

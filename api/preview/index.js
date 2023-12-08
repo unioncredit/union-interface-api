@@ -1,4 +1,4 @@
-const {drawDefaultPreview} = require("../previews/default");
+const {drawDefaultPreview} = require("../../previews/default");
 
 async function handler(req, res) {
   drawDefaultPreview(res);

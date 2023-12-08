@@ -58,8 +58,10 @@ const truncateAddress = (address) =>
   `${address.slice(0, 6)}...${address.slice(-4)}`;
 
 async function getProfileDetails(address, network = "mainnet") {
-  const ens = await fetchENS(address);
-  const isMember = await checkIsMember(address, network);
+  const [ens, isMember] = await Promise.all([
+    fetchENS(address),
+    checkIsMember(address, network),
+  ]);
 
   return {
     image: ens.avatar,

@@ -11,6 +11,18 @@ async function getVoucherCount(address, network) {
   const userManager = UserManagerContracts[network];
 
   const provider = new ethers.providers.JsonRpcProvider(rpc);
+
+  if (network === "arbitrum") {
+    const contract = new ethers.Contract(
+      userManager,
+      ["function getStakerAddresses(address) public view returns (address[] memory)"],
+      provider
+    );
+
+    const stakers = await contract.getStakerAddresses(address) || [];
+    return stakers.length;
+  }
+
   const contract = new ethers.Contract(
     userManager,
     ["function getVoucherCount(address) external view returns (uint256)"],
@@ -25,6 +37,18 @@ async function getVoucheeCount(address, network) {
   const userManager = UserManagerContracts[network];
 
   const provider = new ethers.providers.JsonRpcProvider(rpc);
+
+  if (network === "arbitrum") {
+    const contract = new ethers.Contract(
+      userManager,
+      ["function getBorrowerAddresses(address) public view returns (address[] memory)"],
+      provider
+    );
+
+    const stakers = await contract.getBorrowerAddresses(address) || [];
+    return stakers.length;
+  }
+
   const contract = new ethers.Contract(
     userManager,
     ["function getVoucheeCount(address) external view returns (uint256)"],

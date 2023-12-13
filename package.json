@@ -6,15 +6,19 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "vercel dev",
-    "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/"
+    "start": "vercel dev"
   },
   "dependencies": {
-    "canvas": "2.6.1",
+    "@unioncredit/data": "^1.0.19",
+    "canvas": "^2.11.2",
     "dayjs": "^1.11.3",
+    "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^5.6.9",
     "geoip-lite": "^1.4.5",
     "md5": "^2.3.0",
     "node-fetch": "2"
+  },
+  "devDependencies": {
+    "vercel": "^32.7.2"
   }
 }

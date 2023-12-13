@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@unioncredit/data": "^1.0.19",
-    "canvas": "2.6.1",
+    "canvas": "^2.11.2",
     "dayjs": "^1.11.3",
     "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^5.6.9",

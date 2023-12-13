@@ -1,18 +1,18 @@
 import { CanvasBuilder } from "../canvasbuilder";
 import { Colors, Images, PREVIEW_HEIGHT, PREVIEW_WIDTH } from "../constants";
 import getProfileDetails from "../fetchers/getProfileDetails";
-import { parseERC3770, truncateAddress } from "../utils/address";
+import { parseERC3770 } from "../utils/address";
 import { loadImage } from "canvas";
-import getProfileAvatar from "../fetchers/getProfileAvatar";
-import { centerX, centerY } from "../utils/canvas";
-import makeBlockie from "ethereum-blockies-base64";
+import { centerX } from "../utils/canvas";
+import { arbitrumIcon } from "../icons/arbitrum";
+import { optimismIcon } from "../icons/optimism";
 
 const AVATAR_SIZE = 128;
 const AVATAR_X = centerX(AVATAR_SIZE);
 const AVATAR_Y = 80;
 
 const PRIMARY_LABEL_SIZE = 40;
-const PRIMARY_LABEL_Y = AVATAR_Y + AVATAR_SIZE + 16;
+const PRIMARY_LABEL_Y = AVATAR_Y + AVATAR_SIZE + 50;
 
 const SECONDARY_LABEL_SIZE = 24;
 const SECONDARY_LABEL_Y = PRIMARY_LABEL_Y + PRIMARY_LABEL_SIZE + 16;
@@ -24,7 +24,8 @@ const BADGE_PADDING = 12;
 const MEMBER_BADGE_Y = SECONDARY_LABEL_Y + SECONDARY_LABEL_SIZE + 32;
 const VOUCH_BADGE_Y = MEMBER_BADGE_Y + BADGE_SIZE + (BADGE_PADDING * 2) + 16;
 
-const LOGO_Y = VOUCH_BADGE_Y + BADGE_SIZE + (BADGE_PADDING * 2) + 64;
+const UNION_LOGO_Y = VOUCH_BADGE_Y + BADGE_SIZE + (BADGE_PADDING * 2) + 55;
+const NETWORK_LOGO_Y = VOUCH_BADGE_Y + BADGE_SIZE + (BADGE_PADDING * 2) + 35;
 
 export async function drawProfilePreview(req, res) {
   const erc3770Address = req.query.address;
@@ -79,7 +80,17 @@ export async function drawProfilePreview(req, res) {
   canvas.drawRoundRectText(VOUCH_BADGE_Y, `Receiving ${voucherCount} vouches · Providing ${voucheeCount} vouches`, "#78716C", BADGE_SIZE, "#F5F5F4", BADGE_RADIUS, BADGE_PADDING);
 
   const unionLogo = await loadImage(Images.Union)
-  canvas.drawImage(unionLogo, centerX(116), LOGO_Y, 116, 50);
+  canvas.drawImage(unionLogo, 30, UNION_LOGO_Y, 116, 50);
+
+  switch (network) {
+    case "optimism":
+      canvas.drawImage(await loadImage(optimismIcon), PREVIEW_WIDTH - 65 - 30, NETWORK_LOGO_Y, 65, 65);
+      break;
+
+    case "arbitrum":
+      canvas.drawImage(await loadImage(arbitrumIcon), PREVIEW_WIDTH - 65 - 30, NETWORK_LOGO_Y, 65, 65);
+      break;
+  }
 
   canvas.pipeToResponse(res);
 }

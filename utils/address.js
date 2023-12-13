@@ -13,12 +13,12 @@ export function parseERC3770(input) {
     throw `Input does not contain semi colon: ${input}`;
   }
 
-  const [prefix, address] = input.split(":");
+  const [prefix, ensOrAddress] = input.split(":");
   const network = Networks[prefix];
 
   if (!network) {
     throw `Invalid network prefix supplied: ${prefix}`;
   }
 
-  return [network, addressToUpper(address)];
+  return [network, addressToUpper(ensOrAddress)];
 }

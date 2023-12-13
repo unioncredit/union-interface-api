@@ -58,11 +58,11 @@ async function getVoucheeCount(address, network) {
   return await contract.getVoucheeCount(address);
 }
 
-export async function fetchENS(address) {
+export async function fetchENS(ensOrAddress) {
   const apiUrl = "https://api.ensideas.com/ens/resolve/";
 
   try {
-    const resp = await fetch(apiUrl + address);
+    const resp = await fetch(apiUrl + ensOrAddress);
     const json = await resp.json();
 
     return json;
@@ -73,11 +73,12 @@ export async function fetchENS(address) {
 }
 
 // todo: add support for arbitrum vouch data functions
-async function getProfileDetails(address, network) {
+async function getProfileDetails(ensOrAddress, network) {
   config.set("chainId", ChainIds[network]);
 
-  const [ens, voucherCount, voucheeCount, applications] = await Promise.all([
-    fetchENS(address),
+  const { address, name, avatar} = await fetchENS(ensOrAddress);
+
+  const [voucherCount, voucheeCount, applications] = await Promise.all([
     getVoucherCount(address, network),
     getVoucheeCount(address, network),
     fetchAccountMembershipApplication(address, "timestamp", OrderDirection.ASC),
@@ -89,8 +90,9 @@ async function getProfileDetails(address, network) {
   }
 
   return {
-    image: ens.avatar || makeBlockie(address),
-    name: ens.name || truncateAddress(address),
+    address,
+    image: avatar || makeBlockie(address),
+    name: name || truncateAddress(address),
     isMember: applications.length > 0,
     joinDate,
     voucherCount,

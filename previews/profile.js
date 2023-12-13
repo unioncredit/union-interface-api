@@ -29,14 +29,14 @@ const NETWORK_LOGO_Y = VOUCH_BADGE_Y + BADGE_SIZE + (BADGE_PADDING * 2) + 35;
 
 export async function drawProfilePreview(req, res) {
   const erc3770Address = req.query.address;
-  const [network, address] = parseERC3770(erc3770Address);
+  const [network, ensOrAddress] = parseERC3770(erc3770Address);
 
-  console.log("Query params: ", { network, address });
+  console.log("Query params: ", { network, ensOrAddress });
 
-  const details = await getProfileDetails(address, network);
+  const details = await getProfileDetails(ensOrAddress, network);
   console.log("Profile details:", details);
 
-  const { image, name, isMember, joinDate, voucherCount, voucheeCount } = details;
+  const { address, image, name, isMember, joinDate, voucherCount, voucheeCount } = details;
 
   const canvas = new CanvasBuilder(PREVIEW_WIDTH, PREVIEW_HEIGHT);
   canvas.setBackground(Colors.Background);

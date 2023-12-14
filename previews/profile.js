@@ -84,7 +84,7 @@ export async function drawProfilePreview(req, res) {
 
   switch (network) {
     case "optimism":
-      canvas.drawImage(await loadImage(optimismIcon), PREVIEW_WIDTH - 65 - 30, NETWORK_LOGO_Y, 65, 65);
+      canvas.drawImage(await loadImage(optimismIcon), PREVIEW_WIDTH - 65 - 30, NETWORK_LOGO_Y + 5, 55, 55);
       break;
 
     case "arbitrum":

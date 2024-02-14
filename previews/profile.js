@@ -6,6 +6,7 @@ import { loadImage } from "canvas";
 import { centerX } from "../utils/canvas";
 import { arbitrumIcon } from "../icons/arbitrum";
 import { optimismIcon } from "../icons/optimism";
+import makeBlockie from "ethereum-blockies-base64";
 
 const AVATAR_SIZE = 128;
 const AVATAR_X = centerX(AVATAR_SIZE);
@@ -41,8 +42,14 @@ export async function drawProfilePreview(req, res) {
   const canvas = new CanvasBuilder(PREVIEW_WIDTH, PREVIEW_HEIGHT);
   canvas.setBackground(Colors.Background);
 
-  // Avatar
-  const avatar = await loadImage(image);
+  // try/catch for situation where the user has an avatar URL set, but it is returning 404
+  let avatar;
+  try {
+    avatar = await loadImage(image);
+  } catch {
+    avatar = await loadImage(makeBlockie(address));
+  }
+
   canvas.save();
   canvas.drawClipCircle(AVATAR_X, AVATAR_Y, AVATAR_SIZE);
   canvas.drawImage(avatar, AVATAR_X, AVATAR_Y, AVATAR_SIZE, AVATAR_SIZE);

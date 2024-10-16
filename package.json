@@ -9,7 +9,7 @@
     "start": "vercel dev"
   },
   "dependencies": {
-    "@unioncredit/data": "^1.0.19",
+    "@unioncredit/data": "^1.0.21",
     "canvas": "^2.11.2",
     "dayjs": "^1.11.3",
     "ethereum-blockies-base64": "^1.0.2",

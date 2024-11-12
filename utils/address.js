@@ -9,16 +9,16 @@ export function addressToUpper(address) {
 }
 
 export function parseERC3770(input) {
-  if (!input.includes(":")) {
-    throw `Input does not contain semi colon: ${input}`;
+  if (input.includes(":")) {
+    const [prefix, ensOrAddress] = input.split(":");
+    const network = Networks[prefix];
+
+    if (!network) {
+      throw `Invalid network prefix supplied: ${prefix}`;
+    }
+
+    return [network, addressToUpper(ensOrAddress)];
   }
 
-  const [prefix, ensOrAddress] = input.split(":");
-  const network = Networks[prefix];
-
-  if (!network) {
-    throw `Invalid network prefix supplied: ${prefix}`;
-  }
-
-  return [network, addressToUpper(ensOrAddress)];
+  return ["optimism", addressToUpper(input)];
 }

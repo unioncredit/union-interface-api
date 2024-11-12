@@ -23,7 +23,7 @@ async function handler(req, res) {
 
   const points = await stack.getPoints(address);
 
-  return res.status(200).json({ points: isNaN(points) ? 0 : points });
+  return res.status(200).json({ points: (Array.isArray(points) || isNaN(points)) ? 0 : points });
 }
 
 module.exports = handler;

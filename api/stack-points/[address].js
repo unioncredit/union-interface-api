@@ -2,6 +2,14 @@ const { isAddress } = require("viem");
 const { StackClient } = require("@stackso/js-core");
 
 async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET");
+
+  // Handle preflight (OPTIONS) requests
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const address = req.query.address;
 
   if (!isAddress(address)) {

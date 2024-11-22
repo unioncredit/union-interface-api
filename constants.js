@@ -11,21 +11,25 @@ export const Images = {
 };
 
 export const Networks = {
+  base: "base",
   opt: "optimism",
   arb1: "arbitrum",
 };
 
 export const ChainIds = {
+  base: 8453,
   optimism: 10,
   arbitrum: 42161,
 };
 
 export const RpcUrls = {
+  base: "https://mainnet.base.org",
   optimism: "https://optimism-mainnet.infura.io/v3/a462110af9b248df8e1a72ab3b1087da",
   arbitrum: "https://arbitrum-mainnet.infura.io/v3/a462110af9b248df8e1a72ab3b1087da",
 };
 
 export const UserManagerContracts = {
+  base: "0xfd745A1e2A220C6aC327EC55d2Cb404CD939f56b",
   optimism: "0x8E195D65b9932185Fcc76dB5144534e0f3597628",
   arbitrum: "0xb71F3D4342AaE0b8D531E14D2CF2F45d6e458A5F",
 };

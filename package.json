@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@stackso/js-core": "^0.5.2",
-    "@unioncredit/data": "^1.0.21",
+    "@unioncredit/data": "^1.0.22",
     "canvas": "^2.11.2",
     "dayjs": "^1.11.3",
     "ethereum-blockies-base64": "^1.0.2",
